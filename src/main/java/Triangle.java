@@ -1,36 +1,44 @@
 public class Triangle {
-    public Triangle() {
-    }
+    public Triangle() { }
 
     public int getElement(int row, int col) {
-        row ++;
-        col ++;
-        if (col == 1 || row == col) {
+
+        int middleCol = (int)Math.round((double) row /2);
+
+        if(col > middleCol) {
+            //get smallest column equivalent
+            col = getColEquivalent(row, col, middleCol);
+        }
+
+        return findElement(row, col);
+    }
+
+    private int getColEquivalent(int row, int col, int middleCol) {
+        if (row %2 == 0) {
+            col = middleCol - (col - middleCol);
+        }
+        else {
+            col = middleCol - (col - middleCol + 1);
+        }
+        return col;
+    }
+
+    private int findElement(int row, int col) {
+        if (col == 0) {
             return 1;
         }
-        if (col == 2 || col == row - 1) {
-            return row - 1;
+        if (col == 1) {
+            return row;
         }
-        double dRow = row;
-        int middle = (int)Math.round(dRow/2);
-        if(col > middle) {
-            if (!(row%2 == 0)) {
-                col = middle - (col - middle);
-            }
-            else {
-                col = middle - (col - middle - 1);
-            }
 
-        }
-        int total = row - 1;
-        int additive = row -4;
-        int colIndex = 2;
+        int total = row;
+        int additive = row -3;
+        int colIndex = 1;
         while (colIndex < col) {
             total +=additive;
             additive -= 2;
             colIndex ++;
         }
         return total;
-
     }
 }

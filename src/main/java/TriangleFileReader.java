@@ -5,12 +5,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TriangleFileReader {
-    private int elementList[][];
 
-    public int[][] getElements() {
-        return elementList;
-    }
-
+    private static final int NUM_INTS = 3;
+    private int[][] elementList;
 
     public TriangleFileReader(String filePath) {
         File myObj = new File(filePath);
@@ -18,18 +15,21 @@ public class TriangleFileReader {
         try {
             myReader = new Scanner(myObj);
             int numElements = myReader.nextInt();
-            elementList = new int[numElements][3];
-            for(int i = 0; i < numElements; i++) {
-                for (int j = 0; j < 3; j++) {
+            elementList = new int[numElements][NUM_INTS];
+            for (int i = 0; i < numElements; i++) {
+                for (int j = 0; j < NUM_INTS; j++) {
                     elementList[i][j] = myReader.nextInt();
                 }
             }
 
             myReader.close();
 
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public int[][] getElements() {
+        return elementList;
     }
 }
