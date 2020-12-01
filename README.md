@@ -1,4 +1,4 @@
-# Max Sum
+# Rascal Triangle
 Implementation in Touro's MCO364 of the following problem:
 
 Compute the integer contained in the specified row and column of The Rascal Triangle.
